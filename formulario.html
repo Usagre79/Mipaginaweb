@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>formulario</title>
+  <link rel="stylesheet" href="estilos.css">
+  <script>
+    function validarFormulario() {
+      var nombre = document.getElementById('nombre').value;
+      var primerApellido = document.getElementById('primer-apellido').value;
+      var segundoApellido = document.getElementById('segundo-apellido').value;
+      var email = document.getElementById('email').value;
+      var telefono = document.getElementById('telefono').value;
+      var contrasena = document.getElementById('contrasena').value;
+
+
+      if (nombre.length < 3 || primerApellido.length < 3 || segundoApellido.length < 3) {
+        alert('Los nombres y apellidos deben tener al menos 3 caracteres.');
+        return false;
+      }
+
+      if (!email.includes('@')) {
+        alert('Ingrese una dirección de correo electrónico válida.');
+        return false;
+      }
+
+      if (telefono.length !== 9 || isNaN(telefono)) {
+        alert('El teléfono debe contener 9 números.');
+        return false;
+      }
+
+      if (contrasena.length < 8 || !contrasena.match(/[A-Z]/) || !contrasena.match(/[a-z]/) || !contrasena.match(
+          /[0-9]/) || !contrasena.match(/[!@#$%^&*]/)) {
+        alert(
+          'La contraseña debe tener al menos 8 caracteres, una mayúscula, una minúscula, un número y un carácter especial.'
+          );
+        return false;
+      }
+
+      return true;
+    }
+
+
+    function limpiarFormulario() {
+      document.getElementById('nombre').value = '';
+      document.getElementById('primer-apellido').value = '';
+      document.getElementById('segundo-apellido').value = '';
+      document.getElementById('email').value = '';
+      document.getElementById('telefono').value = '';
+      document.getElementById('contrasena').value = '';
+    }
+  </script>
+
+</head>
+
+<body>
+  <header>
+    <nav>
+      <h1 id="titulo">Desarrollo Web</h1>
+      <form class="buscar">
+        <input type="text">
+        <button>Buscar</button>
+      </form>
+
+      <img class="developer" src="imagenes/logodesarrollo.png" alt="logo1">
+      <img class="webdesign" src="imagenes/logodesarrollo2.png" alt="logo1">
+
+      <a href="index.html"><img class="enlaces" src="imagenes/menuprincipal.png" alt="menuprincipal"></a>
+      <a href="formulario.html"><img class="enlaces" src="imagenes/formcontacto.png" alt="formulario"></a>
+      <a href="videos.html"><img class="enlaces" src="imagenes/galeriavideo.png" alt="galeriavideo"></a>
+      <a href="videos.html"><img class="enlaces" src="imagenes/estadisticas.png" alt="estadisticas"></a>
+      <a href="https://www.google.com/maps"><img class="enlaces" src="imagenes/localizacion.png" alt="localizacion"></a>
+
+
+    </nav>
+  </header>
+  <main class="cuerponoticia">
+    <iframe width="560" height="315" src="https://www.youtube.com/embed/rM5iUup8H5Y?si=4n6aDN9haOlVRGG4"
+      title="YouTube video player" frameborder="0"
+      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+      allowfullscreen></iframe>
+    <section class="formularioDatos">
+      <div class="formulariodatos">
+        <fieldset class="Datospersonales">
+
+          <div class="datos">
+            <h2>Datos personales</h2><br><br>
+            <label for="nombre">Nombre:</label><br><br>
+            <input type="text" id="nombre" name="nombre" minlength="3" required><br><br>
+
+            <label for="primer-apellido">Primer apellido:</label><br><br>
+            <input type="text" id="primer-apellido" name="primer-apellido" minlength="3" required><br><br>
+
+            <label for="segundo-apellido">Segundo apellido:</label><br><br>
+            <input type="text" id="segundo-apellido" name="segundo-apellido" minlength="3" required><br><br>
+
+            <label for="email">Email:</label><br><br>
+            <input type="email" id="email" name="email" required><br><br>
+
+            <label for="fecha-nacimiento">Fecha de nacimiento:</label><br><br>
+            <input type="date" id="fecha-nacimiento" name="fecha-nacimiento"><br><br>
+            <br>
+            <label for="pais">País:</label><br><br>
+            <select id="pais" name="pais"><br><br>
+              <option value="" selected>Seleccione un país</option><br><br>
+
+
+              <option value="Argentina">Argentina</option>
+              <option value="Brasil">Brasil</option>
+              <option value="Chile">Chile</option>
+              <option value="España">España</option>
+              <option value="Francia">Francia</option>
+              <option value="Italia">Italia</option>
+
+            </select><br><br>
+
+            <label for="telefono">Teléfono:</label><br><br>
+            <input type="tel" id="telefono" name="telefono" pattern="[0-9]{9}" required><br><br>
+
+            <label for="contrasena">Contraseña:</label><br><br>
+            <input type="password" id="contrasena" name="contrasena"
+              pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%^&*]).{8,}$" required><br>
+          </div>
+
+        </fieldset>
+        <fieldset class="Datosregistro">
+          <div class="datos">
+            <h2>Datos de registro</h2><br><br>
+            <label for="notificaciones">Cada cuanto desea recibir notificaciones:</label><br><br>
+            <input type="range" id="notificaciones" name="notificaciones"><br><br>
+
+            <label for="aceptar-email">Aceptación de comunicación por email:</label><br><br>
+            <input type="checkbox" id="aceptar-email" name="aceptar-email"><br><br><br><br>
+          </div><br><br>
+          <form id="formulario" action="#" method="post" onsubmit="return validarFormulario()">
+
+
+            <input type="submit" value="Enviar"><br><br><br>
+            <input type="reset" value="Resetear" onclick="limpiarFormulario()"><br><br><br>
+          </form>
+        </fieldset>
+
+
+
+        <footer>
+          <div class="Textonoticia"></div>
+          <form class="formulario2">
+              <h2>Entrar</h2><br>
+              <label for="nombre">Nombre:</label><br><br>
+              <input type="text" id="nombre" name="nombre" minlength="3" required><br><br>
+              <label for="contrasena">Contraseña:</label><br><br>
+              <input type="password" id="contrasena" name="contrasena" minlength="8" required><br><br>
+              <input type="submit" value="Enviar">
+
+          </form>
+       </div>
+      </footer>
+
+
+  </main>
+
+
+</body>
+
+</html>
